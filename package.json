@@ -4,7 +4,8 @@
   "description": "Ahahhaha",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "set NODE_ENV=development&&nodemon app.js",
+    "dev": "nodemon app"
   },
   "dependencies": {
     "@google-cloud/storage": "^5.2.0",
