@@ -4,7 +4,7 @@ if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV === 'develop
 
 const express = require('express');
 const app = express();
-const PORT = "3007";
+const PORT = process.env.PORT;
 const server = require('http').createServer(app);
 
 //db.connect
