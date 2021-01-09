@@ -40,7 +40,7 @@ let Schema = new mongoose.Schema({
             });
         },
         message: (props) =>
-          `${props.value} sudah terpakai, silahkan menggunakan email lain`,
+          `${props.value} has been used, please use another email`,
       },
     ],
   },
