@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { hashingPassword, getHash } = require("../../helpers/hashing");
 
-var Schema = new mongoose.Schema({
+let Schema = new mongoose.Schema({
     full_name: {
         type: String,
         required: [true, "Full Name must be written"]
@@ -49,13 +49,13 @@ var Schema = new mongoose.Schema({
         required: [true, "Password cannot be empty"],
         validate: {
         validator: function (value) {
-            if (value.length < 8) {
+            if (value.length < 4) {
             return false;
             } else {
             return true;
             }
         },
-        message: (props) => `Password length must be larger or equal than 10`,
+        message: (props) => `Password length must be larger or equal than 5`,
         },
     },
     verified: {
@@ -64,7 +64,7 @@ var Schema = new mongoose.Schema({
     }
 });
 
-Schema.pre("save", (next) => {
+Schema.pre("save", function (next) {
     hashingPassword(this.password, (err, newPass) => {
     this.password = newPass;
     next();

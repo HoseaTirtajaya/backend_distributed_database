@@ -1,24 +1,22 @@
 // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const { generateToken } = require("../helpers/jwttoken");
 const nodemailer = require("nodemailer");
-const password = process.env.API_KEY;
 
 function sendEmailRegister(req, res, next) {
-  console.log("Masuk function send Email");
   let transporter = nodemailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
     port: 465,
     secure: true,
     auth: {
-      user: process.env.FROM_EMAIL,
-      pass: password,
+      user: "hoseatirtajaya2@gmail.com",
+      pass: "test123#@!"
     },
   });
   generateToken(req.payload, (err, token) => {
     let user = req.payload;
     //   let link = `http://localhost:3005/api/auth/verify/${token}`;
-    let link = `http://${req.headers.host}/api/auth/verify/${token}`;
+    let link = `http://${req.headers.host}/user/auth/${token}`;
     const mailOptions = {
       from: process.env.FROM_EMAIL,
       to: user.email,
@@ -33,7 +31,7 @@ function sendEmailRegister(req, res, next) {
         res.status(500).json({ message: error.message, status: 500 });
       } else {
         res.status(202).json({
-          message: "Email Verifikasi telah di kirim silahkan cek email anda ",
+          message: `Email Verification has been sent to ${user.email}` ,
           status: 202,
         });
       }

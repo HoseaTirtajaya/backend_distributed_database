@@ -19,7 +19,7 @@ app.use(express.urlencoded({
 
 
 //app.use Router
-// app.use(require('./routes'));
+app.use(require('./routes'));
 
 //app.use error handler
 app.use(require('./middlewares/errHandler'));
