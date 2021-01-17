@@ -24,6 +24,7 @@ class reviewController{
         let places_id = req.query.id;
 
         Review.find({place_id: places_id})
+        .populate("user", "full_name gender phone_no")
         .then((reviews) => {
             res.status(200).json({reviews});
         }).catch(next);
