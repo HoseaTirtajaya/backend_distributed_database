@@ -1,8 +1,8 @@
 const { verifyToken } = require("../helpers/jwttoken");
 
 function userAuthentication(req, res, next) {
-  if (req.headers.gristtoken) {
-    let token = req.headers.gristtoken;
+  if (req.headers.jwttoken) {
+    let token = req.headers.jwttoken;
     verifyToken(token, function (err, result) {
       if (err) {
         next(err);

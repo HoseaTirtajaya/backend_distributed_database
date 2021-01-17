@@ -61,6 +61,19 @@ class userController {
             }
         });
     }
+
+    static checkAuthentication(req, res, next){
+        let userid = req.decoded.id;
+
+        User.findOne({_id: userid})
+        .then((user) => {
+            if(user !== null){
+                res.status(200).json({user});
+            } else {
+                res.status(400).json({message: "You need to login first as user"});
+            }
+        }).catch(next);
+    }
 }
 
 module.exports = userController
