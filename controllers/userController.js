@@ -61,7 +61,7 @@ class userController {
             }
         });
     }
-
+    
     static checkAuthentication(req, res, next){
         let userid = req.decoded.id;
 
